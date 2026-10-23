@@ -145,6 +145,38 @@ h3 { margin: 0; font-size: 1rem; line-height: 1.35; }
 .controls b { font-size: 0.95rem; }
 .controls span { font-size: 0.85rem; color: var(--muted); }
 
+/* Sürüm geçmişi: zaman çizelgesi */
+.releases { margin: 0; padding: 0 0 0 1.4rem; list-style: none; position: relative; }
+.releases::before {
+  content: ""; position: absolute; left: 0.3rem; top: 0.4rem; bottom: 0.4rem; width: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2) 60%, transparent);
+}
+.release { position: relative; margin: 0 0 1rem; }
+.release::before {
+  content: ""; position: absolute; left: -1.38rem; top: 1.25rem; width: 0.75rem; height: 0.75rem; border-radius: 50%;
+  background: var(--gold); box-shadow: 0 0 0 3px var(--bg), 0 0 14px rgba(255, 211, 110, 0.8);
+}
+.release-head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.65rem; }
+.ver {
+  font-weight: 900; font-style: italic; letter-spacing: 0.04em; font-size: 1.05rem;
+  padding: 0.12rem 0.65rem; border-radius: 999px; color: var(--bg);
+  background: linear-gradient(110deg, var(--gold), var(--accent));
+}
+.release-head h3 { font-size: 1.05rem; }
+.tag {
+  font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.12rem 0.5rem; border-radius: 6px; color: var(--cyan); border: 1px solid rgba(95, 227, 240, 0.5);
+}
+.date { margin-left: auto; color: var(--muted); font-size: 0.85rem; }
+.changes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.4rem 1.25rem; margin-top: 0.6rem; }
+.changes h4 {
+  margin: 0.5rem 0 0.2rem; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--cyan);
+}
+.changes ul { margin: 0; padding-left: 1.1rem; }
+.changes li { margin: 0.2rem 0; font-size: 0.93rem; color: #e3dbec; }
+.changes li::marker { color: var(--accent); }
+
 /* SSS: açılır sorular */
 details {
   background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
@@ -192,6 +224,7 @@ footer .logo-sm { font-weight: 900; font-style: italic; letter-spacing: 0.06em; 
   .sun { width: 140px; height: 140px; bottom: 26px; }
   .ground { height: 60px; }
   .shots img { width: 150px; }
+  .date { margin-left: 0; width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
