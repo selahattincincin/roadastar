@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- scripts/build_site.py ile üretilir: yapı site/templates, metinler site/locales. Elle düzenleme. -->
 <html lang="tr">
 <head>
 <meta charset="utf-8">
@@ -8,6 +9,9 @@
 <meta name="theme-color" content="#2a1a5e">
 <link rel="icon" href="../img/icon.png">
 <link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="en" href="https://selahattincincin.github.io/roadastar/">
+<link rel="alternate" hreflang="tr" href="https://selahattincincin.github.io/roadastar/tr/">
+<link rel="alternate" hreflang="x-default" href="https://selahattincincin.github.io/roadastar/">
 </head>
 <body>
 
@@ -29,15 +33,15 @@
 </header>
 
 <main class="wrap">
-  <p class="intro">Roadastar tek parmakla oynanan bir otoyol arcade oyunu. Şeritler arasında kaydır, araçların üstünden
-  zıpla ve uç, flip ve barrel roll'ları combo'ya bağla, altın yıldızı yakalayıp trafiği havaya uçur. Tamamen
-  iPhone'unda çalışır; hesap yok, sunucu yok, hiçbir şey bir yere gönderilmez.</p>
+  <p class="intro">Roadastar tek parmakla oynanan bir otoyol arcade oyunu. Bir loop rampasından baş aşağı fırla, şeritler arasında kaydır, araçların üstünden zıpla ve uç, flip ve barrel roll'ları streak'e bağla. ROCKET barını doldurup sekiz saniye ölümsüz ol, altın yıldızı kap ya da bir eşya kutusu aç ve trafiği havaya uçur. Tamamen iPhone'unda çalışır; hesap yok, sunucu yok, hiçbir şey bir yere gönderilmez.</p>
 
   <div class="shots" aria-label="Ekran görüntüleri">
-    <img src="../img/tr-01.jpg" alt="Tur, rampada baş aşağı başlıyor" loading="lazy">
-    <img src="../img/tr-02.jpg" alt="GO: ileride trafikle otoyol" loading="lazy">
+    <img src="../img/tr-01.jpg" alt="Tur, loop rampasında baş aşağı başlıyor" loading="lazy">
+    <img src="../img/tr-02.jpg" alt="ROCKET MODE: gökkuşağı parıltısı ve havaya uçan araçlar" loading="lazy">
     <img src="../img/tr-03.jpg" alt="Altın haleli STARMAN modu" loading="lazy">
-    <img src="../img/tr-04.jpg" alt="Combo ve boost" loading="lazy">
+    <img src="../img/tr-04.jpg" alt="×2 streak ile front flip" loading="lazy">
+    <img src="../img/tr-05.jpg" alt="SHOCKWAVE bütün araçları yoldan savuruyor" loading="lazy">
+    <img src="../img/tr-06.jpg" alt="Pilot adı ve rekorla ana menü" loading="lazy">
   </div>
 
   <section class="panel help">
@@ -55,6 +59,8 @@
     <li><span class="g">▲</span><b>Basılı tut</b><span>Uç (AIR harcar)</span></li>
     <li><span class="g">▼</span><b>Aşağı kaydır</b><span>Yola sert in (slam)</span></li>
     <li><span class="g">⚡</span><b>BOOST'a basılı tut</b><span>Hızlan (AIR harcar)</span></li>
+    <li><span class="g">▣</span><b>ITEM'e dokun</b><span>Saklanan eşyayı kullan</span></li>
+    <li><span class="g">✦</span><b>ROCKET barı dolunca</b><span>8 saniye ROCKET MODE</span></li>
     <li><span class="g">★</span><b>Altın yıldız</b><span>8 saniye STARMAN</span></li>
   </ul>
 
@@ -62,32 +68,32 @@
 
   <details>
     <summary>Eğitimi tekrar nasıl görürüm?</summary>
-    <p>Ana menüde <strong>Nasıl oynanır?</strong>'a dokun ya da profilini açıp <strong>Eğitimi tekrar oyna</strong>'yı seç.
-    Açılıştaki rampa sahnesinde ekrana dokunursan doğrudan yola geçersin.</p>
+    <p>Ana menüde <strong>Nasıl oynanır?</strong>'a dokun ya da profilini açıp <strong>Eğitimi tekrar oyna</strong>'yı seç. Açılıştaki rampa sahnesinde ekrana dokunursan doğrudan yola geçersin.</p>
+  </details>
+
+  <details>
+    <summary>ROCKET MODE ve eşya kutuları ne işe yarıyor?</summary>
+    <p>Trick'ler, kıl payı kaçışlar ve üstünden atladığın araçlar üstteki ROCKET barını doldurur. Bar dolunca 8 saniyelik <strong>ROCKET MODE</strong> başlar: daha hızlısın, ölümsüzsün ve puanlar üç kat. Yoldaki eşya kutuları AIR'ini doldurur ya da hemen <strong>HEAT SHIELD</strong> verir; <strong>SHOCKWAVE</strong> ve <strong>LUDICROUS</strong> ise BOOST'un üstündeki ITEM yuvasına girer, gerektiğinde dokun.</p>
   </details>
 
   <details>
     <summary>Dili, sesi veya titreşimi nasıl değiştiririm?</summary>
-    <p>Ana menünün sol üstündeki profil düğmesine dokun. Sistem, Türkçe ve English arasında geç, sesi aç/kapat,
-    motor ve efekt seslerini ayrı ayarla ya da titreşimi kapat. Sağ üstteki hoparlör düğmesi her şeyi tek dokunuşla susturur.</p>
+    <p>Ana menünün sol üstündeki profil düğmesine dokun. Sistem, Türkçe ve English arasında geç, sesi aç/kapat, motor ve efekt seslerini ayrı ayarla ya da titreşimi kapat. Sağ üstteki hoparlör düğmesi her şeyi tek dokunuşla susturur.</p>
   </details>
 
   <details>
     <summary>Hiç ses gelmiyor</summary>
-    <p>Profilde <strong>Ses açık</strong>'ın açık, iki ses kaydırıcısının da sıfırın üstünde olduğuna bak.
-    Roadastar iPhone'un sessiz moduna uyar; sessiz modu kapatıp sesi aç.</p>
+    <p>Profilde <strong>Ses açık</strong>'ın açık, iki ses kaydırıcısının da sıfırın üstünde olduğuna bak. Roadastar iPhone'un sessiz moduna uyar; sessiz modu kapatıp sesi aç.</p>
   </details>
 
   <details>
     <summary>Pilot adımı değiştirebilir miyim?</summary>
-    <p>Evet. Profilini aç, adı düzenle ve <strong>Kaydet</strong>'e dokun. Harf, rakam ve alt çizgi; 3–14 karakter.
-    Adın yanındaki numara değişmez.</p>
+    <p>Evet. Profilini aç, adı düzenle ve <strong>Kaydet</strong>'e dokun. Harf, rakam ve alt çizgi; 3–14 karakter. Adın yanındaki numara değişmez.</p>
   </details>
 
   <details>
     <summary>En iyi skorum nerede saklanıyor?</summary>
-    <p>Yalnızca iPhone'unda. Hesap olmadığı için skorlar başka cihaza taşınmaz; uygulamayı silersen skorlar da silinir.
-    Ayrıntısı <a href="privacy.html">gizlilik politikasında</a>.</p>
+    <p>Yalnızca iPhone'unda. Hesap olmadığı için skorlar başka cihaza taşınmaz; uygulamayı silersen skorlar da silinir. Ayrıntısı <a href="privacy.html">gizlilik politikasında</a>.</p>
   </details>
 
   <details>
@@ -118,24 +124,34 @@
         <div>
           <h4>Oynanış</h4>
           <ul>
-            <li>Her tur yüksek bir rampada baş aşağı başlar, ardından GO</li>
+            <li>Her tur dev bir loop rampasında baş aşağı başlar, ardından GO</li>
             <li>Şerit değiştirme, zıplama, AIR deposuyla uçuş ve slam iniş</li>
+            <li>Skor, streak ve mod barları, canlı olay akışı; istediğin an duraklat</li>
             <li>Her tura komik bir bahane, toplam 12 tane</li>
           </ul>
         </div>
         <div>
           <h4><span lang="en">Trick</span>'ler ve combo</h4>
           <ul>
-            <li>Havada front flip ve barrel roll</li>
-            <li>Trick'leri zincirle, combo çarpanını ×50'ye kadar çıkar</li>
+            <li>Havada front flip ve barrel roll, temiz inişte STUNT LANDING</li>
+            <li>CLEAR, MULTI JUMP ve NEAR MISS bonusları</li>
+            <li>Becerileri zincirle, streak çarpanını ×50'ye kadar çıkar</li>
             <li>BOOST ile ekstra hız ve bonus puan</li>
           </ul>
         </div>
         <div>
-          <h4>Toplanabilirler</h4>
+          <h4>ROCKET ve STARMAN</h4>
           <ul>
-            <li>Yolun üstünde süzülen AIR hücreleri</li>
+            <li>Hareketler ROCKET barını doldurur: 8 saniye ROCKET MODE, daha hızlı, ölümsüz ve ×3 puan</li>
             <li>Altın yıldız: araçları havaya uçuran 8 saniyelik STARMAN</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Toplanabilirler ve eşyalar</h4>
+          <ul>
+            <li>Yolun üstünde AIR hücreleri ve AIR CAN</li>
+            <li>Eşya kutuları: OVERPRESSURE, HEAT SHIELD, SHOCKWAVE ve LUDICROUS</li>
+            <li>Sonraya sakladığın eşya için BOOST'un üstünde ITEM yuvası</li>
           </ul>
         </div>
         <div>
@@ -151,8 +167,7 @@
   </ol>
 
   <h2>Sorun bildir</h2>
-  <p>Çökme, takılma ya da yanlış görünen bir şey mi var? Ne olduğunu ve ne beklediğini e-postayla yaz. Roadastar analiz
-  verisi toplamaz ve çökme raporu göndermez; bir hatanın fark edilmesinin tek yolu senin mesajın.</p>
+  <p>Çökme, takılma ya da yanlış görünen bir şey mi var? Ne olduğunu ve ne beklediğini e-postayla yaz. Roadastar analiz verisi toplamaz ve çökme raporu göndermez; bir hatanın fark edilmesinin tek yolu senin mesajın.</p>
 </main>
 
 <footer>

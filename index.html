@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- scripts/build_site.py ile üretilir: yapı site/templates, metinler site/locales. Elle düzenleme. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -8,6 +9,9 @@
 <meta name="theme-color" content="#2a1a5e">
 <link rel="icon" href="img/icon.png">
 <link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="https://selahattincincin.github.io/roadastar/">
+<link rel="alternate" hreflang="tr" href="https://selahattincincin.github.io/roadastar/tr/">
+<link rel="alternate" hreflang="x-default" href="https://selahattincincin.github.io/roadastar/">
 </head>
 <body>
 
@@ -29,15 +33,15 @@
 </header>
 
 <main class="wrap">
-  <p class="intro">Roadastar is a one-thumb arcade highway runner. Swipe between lanes, jump and fly over cars, chain
-  flips and barrel rolls into a combo, and grab the golden star to send traffic flying. It runs entirely on your
-  iPhone — no account, no server, nothing sent anywhere.</p>
+  <p class="intro">Roadastar is a one-thumb arcade highway runner. Launch upside down off a loop ramp, swipe between lanes, jump and fly over cars, and chain flips and barrel rolls into a streak. Fill the ROCKET bar for eight invincible seconds, grab the golden star or crack open an item box, and send traffic flying. It runs entirely on your iPhone — no account, no server, nothing sent anywhere.</p>
 
   <div class="shots" aria-label="Screenshots">
-    <img src="img/en-01.jpg" alt="The run starts upside down on a ramp" loading="lazy">
-    <img src="img/en-02.jpg" alt="GO: the highway with traffic ahead" loading="lazy">
+    <img src="img/en-01.jpg" alt="The run starts upside down on a loop ramp" loading="lazy">
+    <img src="img/en-02.jpg" alt="ROCKET MODE: rainbow glow and cars flying" loading="lazy">
     <img src="img/en-03.jpg" alt="STARMAN mode with a golden aura" loading="lazy">
-    <img src="img/en-04.jpg" alt="Boosting and smashing a car into the air" loading="lazy">
+    <img src="img/en-04.jpg" alt="Front flip with a ×2 streak" loading="lazy">
+    <img src="img/en-05.jpg" alt="SHOCKWAVE blasts every car off the road" loading="lazy">
+    <img src="img/en-06.jpg" alt="Main menu with pilot name and best score" loading="lazy">
   </div>
 
   <section class="panel help">
@@ -55,6 +59,8 @@
     <li><span class="g">▲</span><b>Hold</b><span>Fly (uses AIR)</span></li>
     <li><span class="g">▼</span><b>Swipe down</b><span>Slam back to the road</span></li>
     <li><span class="g">⚡</span><b>Hold BOOST</b><span>Speed up (uses AIR)</span></li>
+    <li><span class="g">▣</span><b>Tap ITEM</b><span>Use the stored item</span></li>
+    <li><span class="g">✦</span><b>Full ROCKET bar</b><span>8 seconds of ROCKET MODE</span></li>
     <li><span class="g">★</span><b>Golden star</b><span>8 seconds of STARMAN</span></li>
   </ul>
 
@@ -62,33 +68,32 @@
 
   <details>
     <summary>How do I see the tutorial again?</summary>
-    <p>Tap <strong>How to play?</strong> in the main menu, or open your profile and choose <strong>Replay tutorial</strong>.
-    Tap the screen during the opening ramp to skip straight to the road.</p>
+    <p>Tap <strong>How to play?</strong> in the main menu, or open your profile and choose <strong>Replay tutorial</strong>. Tap the screen during the opening ramp to skip straight to the road.</p>
+  </details>
+
+  <details>
+    <summary>What do ROCKET MODE and the item boxes do?</summary>
+    <p>Tricks, near misses and cars you jump over fill the ROCKET bar at the top. When it's full you get 8 seconds of <strong>ROCKET MODE</strong>: faster, invincible and worth triple points. Item boxes on the road refill your AIR or give you a <strong>HEAT SHIELD</strong> straight away, or put <strong>SHOCKWAVE</strong> or <strong>LUDICROUS</strong> in the ITEM slot above BOOST — tap it when you need it.</p>
   </details>
 
   <details>
     <summary>How do I change the language, sound or vibration?</summary>
-    <p>Tap the profile button at the top left of the main menu. Switch between System, Türkçe and English, turn sound
-    on or off, set engine and effects volume separately, or turn vibration off. The speaker button at the top right
-    mutes everything in one tap.</p>
+    <p>Tap the profile button at the top left of the main menu. Switch between System, Türkçe and English, turn sound on or off, set engine and effects volume separately, or turn vibration off. The speaker button at the top right mutes everything in one tap.</p>
   </details>
 
   <details>
     <summary>I can't hear anything</summary>
-    <p>Check that <strong>Sound on</strong> is enabled in your profile and both volume sliders are above zero.
-    Roadastar follows your iPhone's silent switch — turn silent mode off and raise the volume.</p>
+    <p>Check that <strong>Sound on</strong> is enabled in your profile and both volume sliders are above zero. Roadastar follows your iPhone's silent switch — turn silent mode off and raise the volume.</p>
   </details>
 
   <details>
     <summary>Can I change my pilot name?</summary>
-    <p>Yes. Open your profile, edit the name and tap <strong>Save</strong>. Letters, digits and underscores,
-    3 to 14 characters. The number after your name stays the same.</p>
+    <p>Yes. Open your profile, edit the name and tap <strong>Save</strong>. Letters, digits and underscores, 3 to 14 characters. The number after your name stays the same.</p>
   </details>
 
   <details>
     <summary>Where is my best score kept?</summary>
-    <p>Only on your iPhone. There is no account, so scores don't move to another device, and deleting the app deletes
-    them. See the <a href="privacy.html">privacy policy</a>.</p>
+    <p>Only on your iPhone. There is no account, so scores don't move to another device, and deleting the app deletes them. See the <a href="privacy.html">privacy policy</a>.</p>
   </details>
 
   <details>
@@ -119,24 +124,34 @@
         <div>
           <h4>Gameplay</h4>
           <ul>
-            <li>Every run starts upside down on a towering ramp, then GO</li>
+            <li>Every run starts upside down on a towering loop ramp, then GO</li>
             <li>Lane changes, jumps, flying on the AIR tank and slam landings</li>
+            <li>Score, streak and mode bars with a live event feed; pause any time</li>
             <li>A ridiculous excuse for every run, 12 in all</li>
           </ul>
         </div>
         <div>
           <h4>Tricks and combo</h4>
           <ul>
-            <li>Front flips and barrel rolls mid-air</li>
-            <li>Chain tricks to push the combo multiplier up to ×50</li>
+            <li>Front flips and barrel rolls mid-air, STUNT LANDING for a clean touchdown</li>
+            <li>CLEAR, MULTI JUMP and NEAR MISS bonuses</li>
+            <li>Chain skills to push the streak multiplier up to ×50</li>
             <li>BOOST for extra speed and bonus points</li>
           </ul>
         </div>
         <div>
-          <h4>Pickups</h4>
+          <h4>ROCKET and STARMAN</h4>
           <ul>
-            <li>AIR cells floating above the road</li>
+            <li>Stunts fill the ROCKET bar: 8 seconds of ROCKET MODE, faster, invincible and ×3 points</li>
             <li>Golden star: 8 seconds of STARMAN that sends cars flying</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Pickups and items</h4>
+          <ul>
+            <li>AIR cells and AIR CAN refills above the road</li>
+            <li>Item boxes: OVERPRESSURE, HEAT SHIELD, SHOCKWAVE and LUDICROUS</li>
+            <li>An ITEM slot above BOOST for the item you save for later</li>
           </ul>
         </div>
         <div>
@@ -152,8 +167,7 @@
   </ol>
 
   <h2>Report a problem</h2>
-  <p>Crash, stutter or something that looks wrong? Email what happened and what you expected. Roadastar has no
-  analytics and sends no crash reports — your message is the only way a bug gets found.</p>
+  <p>Crash, stutter or something that looks wrong? Email what happened and what you expected. Roadastar has no analytics and sends no crash reports — your message is the only way a bug gets found.</p>
 </main>
 
 <footer>
