@@ -102,7 +102,36 @@ Metal System Trace, GPU en düşük performans durumundayken (ms / sn):
 Kalan en büyük kalem uygulamanın kendi piksel işi (274 ms/sn, 1,8 MP); daha da düşürmek gerekirse `GameConfig.renderPixels`
 ve gölge mesafesi. Isınma sürüyor (daha geç ve daha az), düşük kalite ısıda devreye girer (`AppModel`).
 
+## Uzun tur: kayan orijin (2026-11-10)
+
+1.2'de çarpışmasız 176–185 km'lik turda (iPhone 15 Pro Max) araçlar erimiş kutulara döndü, yol ve gölgeler bozuldu,
+lastik dumanı kırık çizgilere ayrıldı. Neden: sahne Float32 koordinatlarla çizilir ve araç −Z yönünde hiç geri
+dönmeden gidiyordu; 131–262 km'de Float adımı 1,56 cm (köşe noktaları, gölge haritası ve dünya uzayı parçacıklar bu
+adıma yuvarlanır). Simülatör (Mac GPU) bunu göstermiyor, cihaz GPU'su gösteriyor: doğrulama cihazda yapılır.
+
+Çözüm `WorldOrigin`: araç 2.048 m'nin katlarını geçince bütün sahne (kökün çocukları), araç ve üretim imleçleri geri
+kaydırılır; sahne konumları en çok ~17 km'de kalır (2 mm adım, piksel altı). Kaydırmada dünya uzayı parçacıklar eski
+yerde kalır; bu yüzden iz yokken (`Effects.isQuiet`, kalkan roket yok) kaydırılır, iz hiç bitmezse 16.384 m'de
+zorla. Yolun biçimi (`Road`), bölgeler (`Zone`), trafik planı ve dekor mutlak mesafeyle çalışır; menüye dönünce kayma
+sıfırlanır. Test: `WorldOriginTests` (180 km'de sahne başlangıca yakın, sahne ↔ yol dönüşümü tur mesafesiyle tutarlı).
+
+Cihazda doğrulama (iPhone 16 Pro, optimize Debug, `-screenshotMode -screenshotAutoStart -screenshotStartDistance 180000
+-screenshotCapture 20,26,32`; kareler `devicectl device copy from --domain-type appDataContainer … Documents/capture-N.png`):
+eski sürümde 32. sn'de araç detaysız ve aracın altındaki yol yok; yenisinde 20–56. sn temiz. 178→202 km, 205 sn
+`-perfProbe`: 58–60 fps, p95 ortalaması 18,7 ms, ısı hep `nominal`, ayak izi 320–370 MB; 192,5 km'deki 16 km'lik
+kaydırmanın olduğu 5 sn'de 20 ms'yi aşan kare yok (`ORIGIN` satırı `-perfProbe` ile yazılır).
+
+Uzun koşu yeniden ölçümü (2026-11-10, 1.3 kodu, iPhone 16 Pro, `-screenshotMode -screenshotAutoStart -screenshotSpeed 3
+-memoryProbe -perfProbe`, 540 sn): 0 → 183 km, 20 orijin kaydırması (iz yokken 2.048 m, iz sürerken 16.384 m). Ayak izi
+ilk ~2 dk'da kalıplar ve önbellekler dolarken 321 → 376 MB, sonra 380–395 MB'ta düz (kutu örgüsü 126, malzeme 51+29,
+yazı 31'de sabit); varlık 780–1.230. 3× hızda p95 ortalaması 20,7 ms, ısı 5. dk'dan sonra `fair`. 60–510. sn kareleri
+(10–180 km) temiz. Not: uzun koşu bozulması görülen cihazda düzeltme öncesi derleme (1.2 (1)) kuruluydu.
+
 ## Yeni kod için kurallar
+
+- **Sahne z'si mutlak konum değildir.** Yol biçimi/bölge gibi mesafeye bağlı bir şey sorarken `origin.roadZ(z)` /
+  `origin.distance(atZ:)`, mesafeden sahneye konarken `origin.z(atDistance:)`; sahnede z saklayan yeni imleç
+  (`nextXZ`) eklenirse `shift(by:)` ile kaydır. Kökün çocuğu olmayan varlık kaydırılmaz.
 
 - **Piksel pahalı, çokgen değil.** Tam ekran yarı saydam katman (vinyet, parıltı, parçacık bulutu) eklerken GPU dolgu
   maliyetini düşün; birden fazla tam ekran katmanı üst üste bindirme.
